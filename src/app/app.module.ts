@@ -15,8 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
+import { ChartModule } from 'primeng/chart';
 
-const PRIMENG_MODULES = [TableModule, ToastModule, RippleModule];
+const PRIMENG_MODULES = [TableModule, ToastModule, RippleModule, ChartModule];
 
 @NgModule({
   declarations: [

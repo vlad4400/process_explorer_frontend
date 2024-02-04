@@ -1,1 +1,19 @@
-<p>memory-analysis works!</p>
+<div class="page">
+  <div class="leftside">
+    <p>
+      Total Memory:
+      {{ resp ? formatBytesToGB(resp.totalMemory) + " GB" : "..." }}
+    </p>
+    <p>Used: {{ resp ? formatBytesToGB(resp.usedMemory) + " GB" : "..." }}</p>
+    <p>Free: {{ resp ? formatBytesToGB(resp.freeMemory) + " GB" : "..." }}</p>
+  </div>
+  <div class="rightside">
+    <p-chart
+      type="pie"
+      [data]="data"
+      type="doughnut"
+      [height]="'400px'"
+      [options]="options"
+    ></p-chart>
+  </div>
+</div>

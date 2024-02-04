@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-wrap: wrap;
+
+  .leftside {
+    p {
+      color: #2c3e50;
+    }
+  }
+
+  .rightside {
+    width: 66%;
+  }
+}
