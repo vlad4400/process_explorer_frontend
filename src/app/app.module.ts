@@ -10,6 +10,13 @@ import { InputOutputMonitorComponent } from './pages/input-output-monitor/input-
 import { NetworkActivityAnalysisComponent } from './pages/network-activity-analysis/network-activity-analysis.component';
 import { UserAccountsComponent } from './pages/user-accounts/user-accounts.component';
 import { SystemServicesMonitorComponent } from './pages/system-services-monitor/system-services-monitor.component';
+import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
+
+const PRIMENG_MODULES = [TableModule, ToastModule, RippleModule];
 
 @NgModule({
   declarations: [
@@ -20,13 +27,15 @@ import { SystemServicesMonitorComponent } from './pages/system-services-monitor/
     InputOutputMonitorComponent,
     NetworkActivityAnalysisComponent,
     UserAccountsComponent,
-    SystemServicesMonitorComponent
+    SystemServicesMonitorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    ...PRIMENG_MODULES,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MessageService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

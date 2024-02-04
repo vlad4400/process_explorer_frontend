@@ -17,16 +17,23 @@ export class WebsocketService {
   private socket: Socket;
 
   constructor() {
-    this.socket = io('/'); // Zmień URL na odpowiedni adres serwera
+    this.socket = io('/');
   }
 
   public requestAllProcesses() {
     this.socket.emit('requestAllProcesses');
   }
 
-  public onProcessUpdate(callback: (data: Process[]) => void) {
+  public onProcessUpdate(
+    callback: (data: Process[]) => void,
+    errorCallback: (error: any) => void
+  ) {
     this.socket.on('processesUpdate', callback);
-  }
+    this.socket.on('error', errorCallback);
 
-  
+    return () => {
+      this.socket.off('processesUpdate', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
 }

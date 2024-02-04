@@ -1,8 +1,31 @@
 <div class="page">
-  <div *ngFor="let process of processes" class="process">
-    <div class="process__pid">{{ process.pid }}</div>
-    <div class="process__id">{{ process.command }}</div>
-    <div class="process__cpu">{{ process.cpu }}</div>
-    <div class="process__memory">{{ process.mem }}</div>
-  </div>
+  <p-table
+    styleClass="p-datatable-sm"
+    [value]="processes"
+    [lazy]="true"
+    [loading]="loading"
+    [paginator]="true"
+    [(first)]="first"
+    [rows]="15"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="[10, 15, 25, 50, 250, 1000]"
+    (onPage)="onPageChange($event)"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>PID</th>
+        <th>Command</th>
+        <th>CPU</th>
+        <th>Memory</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-process>
+      <tr>
+        <td>{{ process.pid }}</td>
+        <td>{{ process.command }}</td>
+        <td>{{ process.cpu + " %" }}</td>
+        <td>{{ process.mem + " Mb" }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>

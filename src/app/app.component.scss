@@ -10,11 +10,13 @@
 
     img {
       position: fixed;
+      z-index: 1;
       top: 0;
       left: 0;
       width: 70px;
       height: 70px;
       border-radius: 0 0 50% 0;
+      box-shadow: 3px 3px 20px #2c3e50;
     }
 
     h1 {
@@ -28,8 +30,6 @@
     margin: 20px 10px;
 
     aside {
-      // margin-top: 20px;
-
       nav {
         a {
           display: block;
@@ -50,9 +50,9 @@
       }
     }
 
-    .main {
+    main {
       flex: 1;
-      padding: 20px;
+      padding: 0 10px 0 20px;
     }
   }
 }
