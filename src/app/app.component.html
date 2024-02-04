@@ -1,3 +1,41 @@
-<header>Process Explorer</header>
+<div class="app">
+  <header>
+    <img src="assets/logo.webp" alt="Logo">
+    <h1>Process Explorer</h1>
+  </header>
 
-<router-outlet></router-outlet>
+  <div class="content">
+    <aside>
+      <nav>
+        <a routerLink="/process-monitor" routerLinkActive="active"
+          >Processes Monitor</a
+        >
+        <a routerLink="/memory-analysis" routerLinkActive="active"
+          >Memory Analysis</a
+        >
+        <a routerLink="/file-system-explorer" routerLinkActive="active"
+          >File System Explorer</a
+        >
+        <a routerLink="/input-output-monitor" routerLinkActive="active"
+          >Input-Output Monitor</a
+        >
+        <a routerLink="/network-activity-analysis" routerLinkActive="active"
+          >Network Activity Analysis</a
+        >
+        <a routerLink="/user-accounts" routerLinkActive="active"
+          >User Accounts</a
+        >
+        <a routerLink="/system-services-monitor" routerLinkActive="active"
+          >System Services Monitor</a
+        >
+      </nav>
+    </aside>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
+<!-- <router-outlet></router-outlet> -->
+<!-- <app-process-monitor></app-process-monitor> -->

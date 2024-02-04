@@ -1,0 +1,8 @@
+<div class="page">
+  <div *ngFor="let process of processes" class="process">
+    <div class="process__pid">{{ process.pid }}</div>
+    <div class="process__id">{{ process.command }}</div>
+    <div class="process__cpu">{{ process.cpu }}</div>
+    <div class="process__memory">{{ process.mem }}</div>
+  </div>
+</div>

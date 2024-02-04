@@ -75,7 +75,8 @@
               "browserTarget": "process_explorer_frontend:build:production"
             },
             "development": {
-              "browserTarget": "process_explorer_frontend:build:development"
+              "browserTarget": "process_explorer_frontend:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
