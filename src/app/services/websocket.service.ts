@@ -1,6 +1,6 @@
 // src/app/websocket.service.ts
 
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 
 export interface Process {
@@ -14,6 +14,13 @@ export interface MemoryUsage {
   totalMemory: number;
   freeMemory: number;
   usedMemory: number;
+}
+
+export interface DirectoryItem {
+  name: string;
+  isDirectory: boolean;
+  size?: number;
+  children?: DirectoryItem[];
 }
 
 interface Error {
@@ -60,6 +67,27 @@ export class WebsocketService {
 
     return () => {
       this.socket.off('memoryUsageUpdate', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
+
+  public requestFileSystemExplorer(path: string) {
+    this.socket.emit('requestDirectoryContents', { path });
+  }
+
+  public requestDirectoryContentsLazy(path: string) {
+    this.socket.emit('requestDirectoryContents', { path });
+  }
+
+  public onFileSystemExplorerUpdate(
+    callback: (data: DirectoryItem[]) => void,
+    errorCallback: (error: Error) => void
+  ) {
+    this.socket.on('directoryContentsResponse', callback);
+    this.socket.on('error', errorCallback);
+
+    return () => {
+      this.socket.off('directoryContentsResponse', callback);
       this.socket.off('error', errorCallback);
     };
   }

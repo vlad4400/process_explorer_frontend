@@ -1,0 +1,15 @@
+.panel {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+
+}
+
+.expand-item {
+  display: grid;
+  grid-template-columns: 30px auto 100px;
+  gap: 10px;
+  width: 100%;
+  padding: 5px;
+}

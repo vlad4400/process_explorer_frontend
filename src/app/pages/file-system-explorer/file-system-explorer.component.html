@@ -1,1 +1,33 @@
-<p>file-system-explorer works!</p>
+<div class="page">
+  <div class="panel">
+    <button
+      *ngIf="currentPath !== '/'"
+      pButton
+      pRipple
+      type="button"
+      label="Back"
+      class="p-button-text"
+      icon="pi pi-angle-left"
+      (click)="onBack()"
+      [disabled]="loading"
+    ></button>
+    <!-- <button pButton pRipple type="button" label="Home" class="p-button-text" icon="pi pi-home"></button> -->
+    <div>{{ currentPath }}</div>
+  </div>
+  <p-tree [value]="filesTree" [loading]="loading">
+    <ng-template let-node pTemplate="folder">
+      <div class="expand-item" (click)="onNodeSelect(node)">
+        <i class="pi pi-folder"></i>
+        <div class="name">{{ node.data.name }}</div>
+      </div>
+    </ng-template>
+    <ng-template let-node pTemplate="file">
+      <div class="expand-item" (click)="onNodeSelect(node)">
+        <i class="pi pi-file"></i>
+        <div class="name">{{ node.data.name }}</div>
+        <div class="size">{{ convertBytesToMB(node.data.size) + ' MB' }}</div>
+      </div>
+    </ng-template>
+    
+  </p-tree>
+</div>

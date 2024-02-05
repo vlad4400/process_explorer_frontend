@@ -16,8 +16,19 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 import { ChartModule } from 'primeng/chart';
+import { TreeModule } from 'primeng/tree';
+import { TreeTableModule } from 'primeng/treetable';
+import { ButtonModule } from 'primeng/button';
 
-const PRIMENG_MODULES = [TableModule, ToastModule, RippleModule, ChartModule];
+const PRIMENG_MODULES = [
+  TableModule,
+  ToastModule,
+  RippleModule,
+  ChartModule,
+  TreeModule,
+  TreeTableModule,
+  ButtonModule,
+];
 
 @NgModule({
   declarations: [

@@ -6,7 +6,7 @@
     [loading]="loading"
     [paginator]="true"
     [(first)]="first"
-    [rows]="15"
+    [rows]="10"
     [totalRecords]="totalRecords"
     [rowsPerPageOptions]="[10, 15, 25, 50, 250, 1000]"
     (onPage)="onPageChange($event)"
@@ -16,7 +16,7 @@
         <th>PID</th>
         <th>Command</th>
         <th>CPU</th>
-        <th>Memory</th>
+        <th>Disk Write Total</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-process>
