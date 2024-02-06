@@ -43,6 +43,11 @@ export interface UserAccount {
   loginTime: string;
 }
 
+export interface SystemService {
+  name: string;
+  status: string;
+}
+
 interface Error {
   message: string;
 }
@@ -159,6 +164,23 @@ export class WebsocketService {
 
     return () => {
       this.socket.off('userAccountsResponse', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
+
+  public requestSystemServices(): void {
+    this.socket.emit('requestSystemServices');
+  }
+
+  public onSystemServicesUpdate(
+    callback: (services: SystemService[]) => void,
+    errorCallback: (error: any) => void
+  ): () => void {
+    this.socket.on('systemServicesResponse', callback);
+    this.socket.on('error', errorCallback);
+
+    return () => {
+      this.socket.off('systemServicesResponse', callback);
       this.socket.off('error', errorCallback);
     };
   }

@@ -1,1 +1,25 @@
-<p>system-services-monitor works!</p>
+<div class="page">
+  <h2>System Services Monitor</h2>
+  <ng-container *ngIf="loading; else servicesList">
+    <p>Loading system services...</p>
+  </ng-container>
+  <ng-template #servicesList>
+    <table *ngIf="systemServices.length > 0; else noDataTemplate">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of systemServices">
+          <td>{{ service.name }}</td>
+          <td>{{ service.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #noDataTemplate>
+    <p>No system services data available.</p>
+  </ng-template>
+</div>
