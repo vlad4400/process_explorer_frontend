@@ -1,1 +1,28 @@
-<p>user-accounts works!</p>
+<div class="page">
+  <ng-container *ngIf="!loading; else loadingTemplate">
+    <table *ngIf="userAccounts.length > 0; else noDataTemplate">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Terminal</th>
+          <th>Login Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userAccounts">
+          <td>{{ user.username }}</td>
+          <td>{{ user.terminal }}</td>
+          <td>{{ user.loginTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-template #loadingTemplate>
+    <p>Loading user accounts...</p>
+  </ng-template>
+
+  <ng-template #noDataTemplate>
+    <p>No user accounts data available.</p>
+  </ng-template>
+</div>

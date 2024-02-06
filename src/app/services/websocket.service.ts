@@ -37,6 +37,12 @@ export interface DiskIOStat {
   ms: number; // Czas, w którym zebrane zostały dane (w milisekundach)
 }
 
+export interface UserAccount {
+  username: string;
+  terminal: string;
+  loginTime: string;
+}
+
 interface Error {
   message: string;
 }
@@ -136,6 +142,23 @@ export class WebsocketService {
 
     return () => {
       this.socket.off('networkActivityResponse', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
+
+  public requestUserAccounts(): void {
+    this.socket.emit('requestUserAccounts');
+  }
+
+  public onUserAccountsUpdate(
+    callback: (accounts: UserAccount[]) => void,
+    errorCallback: (error: any) => void
+  ): () => void {
+    this.socket.on('userAccountsResponse', callback);
+    this.socket.on('error', errorCallback);
+
+    return () => {
+      this.socket.off('userAccountsResponse', callback);
       this.socket.off('error', errorCallback);
     };
   }
