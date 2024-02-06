@@ -5,14 +5,52 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  // background-color: #f4f4f4;
+  height: 100%;
+}
+
+.app {
+  height: 100%;
+
+  .content {
+    height: calc(100% - 40px - 2 * 20px);
+
+    main {
+      height: calc(100% - 10px);
+      padding: 10px;
+    }
+  }
+}
+
+* {
+  /* Styles for the scrollbar track */
+  ::-webkit-scrollbar {
+    width: 8px; /* Reduced width of the scrollbar */
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2c3e50; /* Color of the scrollbar track */
+    border-radius: 4px; /* Adjusted rounded corners of the track for a thinner design */
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #566573; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Adjusted rounded corners of the thumb for a thinner design */
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3d5a6c; /* Slightly lighter color of the thumb on hover */
+  }
 }
 
 .page {
-  // background-color: #f4f4f4;
+  padding: 20px;
+  height: calc(100% - 10px);
+  overflow: auto;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
 }
 
 .spinner-wrapper {
