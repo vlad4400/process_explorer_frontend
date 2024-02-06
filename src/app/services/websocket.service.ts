@@ -1,5 +1,3 @@
-// src/app/websocket.service.ts
-
 import { Injectable, isDevMode } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 
@@ -21,6 +19,22 @@ export interface DirectoryItem {
   isDirectory: boolean;
   size?: number;
   children?: DirectoryItem[];
+}
+
+export interface DiskIOStat {
+  rIO: number; // Liczba operacji odczytu z dysku
+  wIO: number; // Liczba operacji zapisu na dysk
+  tIO: number; // Całkowita liczba operacji I/O (odczyt plus zapis)
+  rIO_sec: number; // Liczba operacji odczytu z dysku na sekundę
+  wIO_sec: number; // Liczba operacji zapisu na dysk na sekundę
+  tIO_sec: number; // Całkowita liczba operacji I/O na sekundę
+  rWaitTime: number; // Całkowity czas oczekiwania na operacje odczytu (w milisekundach)
+  wWaitTime: number; // Całkowity czas oczekiwania na operacje zapisu (w milisekundach)
+  tWaitTime: number; // Całkowity czas oczekiwania na wszystkie operacje I/O (w milisekundach)
+  rWaitPercent: number; // Procent czasu oczekiwania spędzony na odczycie
+  wWaitPercent: number; // Procent czasu oczekiwania spędzony na zapisie
+  tWaitPercent: number; // Procent czasu oczekiwania spędzony na wszystkich operacjach I/O
+  ms: number; // Czas, w którym zebrane zostały dane (w milisekundach)
 }
 
 interface Error {
@@ -88,6 +102,23 @@ export class WebsocketService {
 
     return () => {
       this.socket.off('directoryContentsResponse', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
+
+  public requestDiskIOStats(): void {
+    this.socket.emit('requestDiskIOData');
+  }
+
+  public onDiskIOStatsUpdate(
+    callback: (stats: DiskIOStat) => void,
+    errorCallback: (error: any) => void
+  ): () => void {
+    this.socket.on('diskIOStatsResponse', callback);
+    this.socket.on('error', errorCallback);
+
+    return () => {
+      this.socket.off('diskIOStatsResponse', callback);
       this.socket.off('error', errorCallback);
     };
   }

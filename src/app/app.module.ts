@@ -19,6 +19,7 @@ import { ChartModule } from 'primeng/chart';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { ButtonModule } from 'primeng/button';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 const PRIMENG_MODULES = [
   TableModule,
@@ -28,6 +29,7 @@ const PRIMENG_MODULES = [
   TreeModule,
   TreeTableModule,
   ButtonModule,
+  ProgressSpinnerModule,
 ];
 
 @NgModule({

@@ -34,10 +34,19 @@ export class FileSystemExplorerComponent implements OnInit {
     this._unsubscribe = this.websocketService.onFileSystemExplorerUpdate(
       (resp: DirectoryItem[]) => {
         console.log('Directory contents received:', resp);
-        this.filesTree = this.mapToTreeNode(resp); // Aktualizacja danych drzewa
+        this.filesTree = this.mapToTreeNode(resp);
         this.loading = false;
       },
       (error) => {
+        this.currentPath = this.currentPath.substring(
+          0,
+          this.currentPath.lastIndexOf('/')
+        );
+
+        if (this.currentPath === '') {
+          this.currentPath = '/';
+        }
+
         this.handleError(error);
         this.loading = false;
       }
