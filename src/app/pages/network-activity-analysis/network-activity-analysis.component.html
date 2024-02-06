@@ -1,1 +1,34 @@
-<p>network-activity-analysis works!</p>
+<div class="page">
+  <p-table
+    styleClass="p-datatable-sm"
+    [value]="networkActivities"
+    [lazy]="false"
+    [loading]="loading" [paginator]="true" [(first)]="first" [rows]="10"
+    [totalRecords]="networkActivities.length" [rowsPerPageOptions]="[10, 15, 25,
+    50, 250, 1000]" (onPage)="onPageChange($event)" >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Local Address</th>
+        <th>Local Port</th>
+        <th>Peer Address</th>
+        <th>Peer Port</th>
+        <th>PID</th>
+        <th>Process</th>
+        <th>Protocol</th>
+        <th>State</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-activity>
+      <tr>
+        <td>{{ activity.localAddress }}</td>
+        <td>{{ activity.localPort }}</td>
+        <td>{{ activity.peerAddress }}</td>
+        <td>{{ activity.peerPort }}</td>
+        <td>{{ activity.pid }}</td>
+        <td>{{ activity.process }}</td>
+        <td>{{ activity.protocol }}</td>
+        <td>{{ activity.state }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

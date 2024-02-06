@@ -122,4 +122,21 @@ export class WebsocketService {
       this.socket.off('error', errorCallback);
     };
   }
+
+  public requestNetworkActivity(): void {
+    this.socket.emit('requestNetworkActivity');
+  }
+
+  public onNetworkActivityUpdate(
+    callback: (data: any) => void,
+    errorCallback: (error: any) => void
+  ): () => void {
+    this.socket.on('networkActivityResponse', callback);
+    this.socket.on('error', errorCallback);
+
+    return () => {
+      this.socket.off('networkActivityResponse', callback);
+      this.socket.off('error', errorCallback);
+    };
+  }
 }
